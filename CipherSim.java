@@ -1,6 +1,8 @@
-import java.io.*;
-import java.util.*;
-
+import java.io.File;
+import java.io.PrintStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CipherSim {
     public static void main(String[] args) throws FileNotFoundException {
