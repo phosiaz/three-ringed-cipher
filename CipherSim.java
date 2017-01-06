@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CipherSim {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         ArrayList<Character> outerRing = new ArrayList(26);
         ArrayList<Character> midRing = new ArrayList(26);
         ArrayList<Character> innerRing = new ArrayList(26);
@@ -54,21 +54,25 @@ public class CipherSim {
         } while (choice != 4);
     }
 
-    public static void save(Cryptography cipherToSave, ArrayList<String> changedText) throws FileNotFoundException {
+    public static void save(Cryptography cipherToSave, ArrayList<String> changedText) {
         String title;
         Scanner input = new Scanner(System.in);
         System.out.println("What should we call your saved file? (no \".txt\")");
         title = input.nextLine();
-        File cipherFile = new File(title + "cipher.txt");
-        PrintStream output = new PrintStream(cipherFile);
-        output.println(cipherToSave.toString());
-        output.print(cipherToSave.getRot());
-        File changedTextFile = new File(title + ".txt");
-        output = new PrintStream(changedTextFile);
-        for (String x : changedText) {
-            output.println(x);
+        try {
+            File cipherFile = new File(title + "cipher.txt");
+            PrintStream output = new PrintStream(cipherFile);
+            output.println(cipherToSave.toString());
+            output.print(cipherToSave.getRot());
+            File changedTextFile = new File(title + ".txt");
+            output = new PrintStream(changedTextFile);
+            for (String x : changedText) {
+                output.println(x);
+            }
+            output.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Cannot save file.");
         }
-        output.close();
     }
 }
 
